@@ -50,12 +50,23 @@ app.get('/',function(req,res){
 
     // Center the map on the user's location.
     map.setView({ center: loc });
-
+        /*
     // Send the location data to the server.
     var xhr = new XMLHttpRequest();
     xhr.open("POST", "https://chittapan-tracker.onrender.com/data");
     xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
     xhr.send(JSON.stringify({ lat: position.coords.latitude, lon: position.coords.longitude }));
+    */
+    const ws = new WebSocket("wss://chittapan-tracker.onrender.com");
+
+    // Send the location data to the server when the WebSocket connection is open
+    ws.addEventListener("open", () => {
+      const locationData = {
+        lat: position.coords.latitude,
+        lon: position.coords.longitude
+      };
+      ws.send(JSON.stringify(locationData));
+    });
     }
 
     function StopTracking() {
