@@ -53,7 +53,7 @@ app.get('/',function(req,res){
 
     // Send the location data to the server.
     var xhr = new XMLHttpRequest();
-    xhr.open("POST", "http://chittapan-tracker.onrender.com/data");
+    xhr.open("POST", "https://chittapan-tracker.onrender.com/data");
     xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
     xhr.send(JSON.stringify({ lat: position.coords.latitude, lon: position.coords.longitude }));
     }
@@ -67,7 +67,7 @@ app.get('/',function(req,res){
     }
 
 </script>
-<script type='text/javascript' src='http://www.bing.com/api/maps/mapcontrol?callback=GetMap' async defer></script>
+<script type='text/javascript' src='https://www.bing.com/api/maps/mapcontrol?callback=GetMap' async defer></script>
 </html>
     `);
     res.end();
