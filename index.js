@@ -4,8 +4,10 @@ const express = require('express');
 const app = express();
 const path = require('path');
 
+const cors = require('cors');
 const PORT = process.env.PORT || 3020;
-
+app.use(cors({ origin: 'https://tracker-41x9.onrender.com' }));
+//app.use(cors({ origin: 'http://127.0.0.1:3020' }));
 app.use(express.urlencoded({ extended: true }));
 app.get('/',function(req,res){
     res.write(`
@@ -22,7 +24,7 @@ app.get('/',function(req,res){
 </body>
 <script type='text/javascript'>
     var map, watchId, userPin;
-
+    
     function GetMap() {
     map = new Microsoft.Maps.Map('#myMap', {
     credentials: 'AmhMfBZLCSDiPKsfakqFoNOIQAO2ot6WHmRfJOOByGBtg5zNzKwf6IN7zTl7DH2y'
@@ -44,31 +46,27 @@ app.get('/',function(req,res){
     position.coords.longitude
     );
 
+  
+
+
     // Update the user pushpin.
     userPin.setLocation(loc);
     userPin.setOptions({ visible: true });
 
     // Center the map on the user's location.
     map.setView({ center: loc });
-        /*
+        
     // Send the location data to the server.
     var xhr = new XMLHttpRequest();
-    xhr.open("POST", "https://chittapan-tracker.onrender.com/data");
+    //xhr.open("POST", "http://127.0.0.1:3030/bus_no_1/data");
+    xhr.open("POST", "https://chittapan-tracker.onrender.com/bus_no_1/data");
     xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
     xhr.send(JSON.stringify({ lat: position.coords.latitude, lon: position.coords.longitude }));
-    */
-    const ws = new WebSocket("wss://chittapan-tracker.onrender.com");
-
-    // Send the location data to the server when the WebSocket connection is open
-    ws.addEventListener("open", () => {
-      const locationData = {
-        lat: position.coords.latitude,
-        lon: position.coords.longitude
-      };
-      ws.send(JSON.stringify(locationData));
-    });
+    
     }
 
+    
+    
     function StopTracking() {
     // Cancel the geolocation updates.
     navigator.geolocation.clearWatch(watchId);
@@ -83,4 +81,5 @@ app.get('/',function(req,res){
     `);
     res.end();
 });
+
 http.createServer(app).listen(PORT);
