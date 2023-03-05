@@ -30,29 +30,22 @@ app.get('/',function(req,res){
     credentials: 'AmhMfBZLCSDiPKsfakqFoNOIQAO2ot6WHmRfJOOByGBtg5zNzKwf6IN7zTl7DH2y'
     });
     }
-
     function StartTracking() {
     // Add a pushpin to show the user's location.
     userPin = new Microsoft.Maps.Pushpin(map.getCenter(), { visible: false });
     map.entities.push(userPin);
-
     // Watch the user's location.
     watchId = navigator.geolocation.watchPosition(UsersLocationUpdated);
     }
-
     function UsersLocationUpdated(position) {
     var loc = new Microsoft.Maps.Location(
     position.coords.latitude,
     position.coords.longitude
     );
-
   
-
-
     // Update the user pushpin.
     userPin.setLocation(loc);
     userPin.setOptions({ visible: true });
-
     // Center the map on the user's location.
     map.setView({ center: loc });
         
@@ -64,17 +57,14 @@ app.get('/',function(req,res){
     xhr.send(JSON.stringify({ lat: position.coords.latitude, lon: position.coords.longitude }));
     
     }
-
     
     
     function StopTracking() {
     // Cancel the geolocation updates.
     navigator.geolocation.clearWatch(watchId);
-
     // Remove the user pushpin.
     map.entities.clear();
     }
-
 </script>
 <script type='text/javascript' src='https://www.bing.com/api/maps/mapcontrol?callback=GetMap' async defer></script>
 </html>
