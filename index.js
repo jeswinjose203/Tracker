@@ -1,24 +1,10 @@
-const cluster = require('cluster');
-const numCPUs = require('os').cpus().length;
 
-if (cluster.isMaster) {
-  console.log(`Master ${process.pid} is running`);
-
-  // Fork workers.
-  for (let i = 0; i < numCPUs; i++) {
-    cluster.fork();
-  }
-
-  cluster.on('exit', (worker, code, signal) => {
-    console.log(`worker ${worker.process.pid} died`);
-  });
-} else {
     var fs = require('fs');
     var http = require('http');
     const express = require('express');
     const app = express();
     const path = require('path');
-    
+    const wakeLock = await navigator.wakeLock.request('screen');
     const cors = require('cors');
     const PORT = process.env.PORT || 3020;
     app.use(cors({ origin: 'https://tracker-41x9.onrender.com' }));
@@ -88,5 +74,4 @@ if (cluster.isMaster) {
     res.end();
 });
 http.createServer(app).listen(PORT);
-}
 
