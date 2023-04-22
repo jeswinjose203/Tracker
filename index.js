@@ -18,7 +18,7 @@
     <head>
         <title></title>
         <meta charset="utf-8" />
-        <script src="./a.js"></script>
+        
     </head>
     <body>
         <div id="myMap" style="position:relative;width:600px;height:400px;"></div><br/>
@@ -70,7 +70,19 @@
         }
     </script>
     <script type='text/javascript' src='https://www.bing.com/api/maps/mapcontrol?callback=GetMap' async defer></script>
-    <script src="./a.js"></script>
+    <script type='text/javascript'>
+    let wakeLock = null;
+
+const requestWakeLock = async () => {
+  try {
+    wakeLock = await navigator.wakeLock.request('screen');
+    console.log('Wake Lock acquired');
+  } catch (err) {
+    console.log(err);
+  }
+};
+requestWakeLock();
+    </script>
     </html>
     `);
     res.end();
