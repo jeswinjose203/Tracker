@@ -18,6 +18,7 @@
     <head>
         <title></title>
         <meta charset="utf-8" />
+        <script src="./a.js"></script>
     </head>
     <body>
         <div id="myMap" style="position:relative;width:600px;height:400px;"></div><br/>
