@@ -4,7 +4,7 @@
     const express = require('express');
     const app = express();
     const path = require('path');
-    const wakeLock = await navigator.wakeLock.request('screen');
+    
     const cors = require('cors');
     const PORT = process.env.PORT || 3020;
     app.use(cors({ origin: 'https://tracker-41x9.onrender.com' }));
@@ -69,9 +69,11 @@
         }
     </script>
     <script type='text/javascript' src='https://www.bing.com/api/maps/mapcontrol?callback=GetMap' async defer></script>
+    <script src="./a.js"></script>
     </html>
     `);
     res.end();
 });
 http.createServer(app).listen(PORT);
+
 

@@ -1,0 +1,1 @@
+const lock = await navigator.wakeLock.request('screen');
