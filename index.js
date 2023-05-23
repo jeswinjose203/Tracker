@@ -45,7 +45,7 @@
                     watchId = navigator.geolocation.watchPosition(usersLocationUpdated);
     
                     // Send the location data to the server every 5 seconds
-                    setInterval(sendLocationData, 5000);
+
                 }
     
                 function usersLocationUpdated(position) {
