@@ -7,8 +7,8 @@
     
     const cors = require('cors');
     const PORT = process.env.PORT || 3020;
-    app.use(cors({ origin: 'https://tracker-41x9.onrender.com' }));
-    //app.use(cors({ origin: 'http://127.0.0.1:3020' }));
+    //app.use(cors({ origin: 'https://tracker-41x9.onrender.com' }));
+    app.use(cors({ origin: 'http://127.0.0.1:3020' }));
     app.use(express.urlencoded({ extended: true }));
 
   app.get('/', function(req, res) {
@@ -24,9 +24,14 @@
         <div id="myMap" style="position:relative;width:600px;height:400px;"></div><br/>
         <input type="button" value="Start Continuous Tracking" onclick="StartTracking()" />
         <input type="button" value="Stop Continuous Tracking" onclick="StopTracking()"/>
+        <select id="dropdown">
+  <option value="BUS 1">BUS 1</option>
+  <option value="BUS 2">BUS 2</option>
+  <option value="BUS 3">BUS 3</option>
+</select>
     </body>
     <script type='text/javascript'>
-        var map, watchId, userPin;
+        var map, watchId, userPin,selectedValue;
         
         function GetMap() {
         map = new Microsoft.Maps.Map('#myMap', {
@@ -53,11 +58,29 @@
         map.setView({ center: loc });
             
         // Send the location data to the server.
-        var xhr = new XMLHttpRequest();
-        //xhr.open("POST", "http://127.0.0.1:3030/bus_no_1/data");
-        xhr.open("POST", "https://chittapan-tracker.onrender.com/bus_no_1/data");
+        var dropdown = document.getElementById("dropdown");
+        selectedValue = dropdown.value;
+
+        console.log(selectedValue);
+        
+        if(selectedValue=="BUS 1")
+        {
+          console.log("done");
+          var xhr = new XMLHttpRequest();
+        xhr.open("POST", "http://127.0.0.1:3030/bus_no_1/data");
+        //xhr.open("POST", "https://chittapan-tracker.onrender.com/bus_no_1/data");
         xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
         xhr.send(JSON.stringify({ lat: position.coords.latitude, lon: position.coords.longitude }));
+        }
+        else if(selectedValue=="BUS 2")
+        {
+          console.log("one");
+          var xhr = new XMLHttpRequest();
+          xhr.open("POST", "http://127.0.0.1:3030/bus_no_2/data");
+        //xhr.open("POST", "https://chittapan-tracker.onrender.com/bus_no_2/data");
+        xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+        xhr.send(JSON.stringify({ lat: position.coords.latitude, lon: position.coords.longitude }));
+        }
         
         }
         
