@@ -1,3 +1,3 @@
 #!/bin/bash
-sudo npm install -g pm2
+npm install pm2
 pm2 start index.js
