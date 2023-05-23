@@ -10,7 +10,16 @@
     app.use(cors({ origin: 'https://tracker-41x9.onrender.com' }));
     //app.use(cors({ origin: 'http://127.0.0.1:3020' }));
     app.use(express.urlencoded({ extended: true }));
-
+// Add a service worker to enable background execution
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('/service-worker.js')
+    .then(function(registration) {
+      console.log('Service Worker registered with scope:', registration.scope);
+    })
+    .catch(function(error) {
+      console.error('Service Worker registration failed:', error);
+    });
+}
   app.get('/', function(req, res) {
     res.write(`
     <!DOCTYPE html>
