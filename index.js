@@ -5,10 +5,11 @@ const app = express();
 const path = require('path');
 
 const cors = require('cors');
-const PORT = 3000;
-
+const PORT = process.env.PORT || 8080;
+app.use(cors({ origin: 'https://tracker-41x9.onrender.com' }));
+//app.use(cors({ origin: 'http://127.0.0.1:3020' }));
 app.use(express.urlencoded({ extended: true }));
-app.use(cors({ origin: 'http://43.204.19.164:3000/' }));
+
 app.get('/', function(req, res) {
 res.write(`
 <!DOCTYPE html>
