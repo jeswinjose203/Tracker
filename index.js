@@ -8,7 +8,7 @@ const cors = require('cors');
 const PORT = 3000;
 
 app.use(express.urlencoded({ extended: true }));
-app.use(cors({ origin: 'http://127.0.0.1:3020' }));
+app.use(cors({ origin: 'http://16.171.5.122:3000/' }));
 app.get('/', function(req, res) {
 res.write(`
 <!DOCTYPE html>
