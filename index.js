@@ -66,8 +66,8 @@ res.write(`
     {
       console.log("done");
       var xhr = new XMLHttpRequest();
-    xhr.open("POST", "http://127.0.0.1:3030/bus_no_1/data");
-    //xhr.open("POST", "https://chittapan-tracker.onrender.com/bus_no_1/data");
+    //xhr.open("POST", "http://127.0.0.1:3030/bus_no_1/data");
+    xhr.open("POST", "https://chittapan-tracker.onrender.com/bus_no_1/data");
     xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
     xhr.send(JSON.stringify({ lat: position.coords.latitude, lon: position.coords.longitude }));
     }
@@ -75,8 +75,8 @@ res.write(`
     {
       console.log("one");
       var xhr = new XMLHttpRequest();
-      xhr.open("POST", "http://127.0.0.1:3030/bus_no_2/data");
-    //xhr.open("POST", "https://chittapan-tracker.onrender.com/bus_no_2/data");
+    //  xhr.open("POST", "http://127.0.0.1:3030/bus_no_2/data");
+    xhr.open("POST", "https://chittapan-tracker.onrender.com/bus_no_2/data");
     xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
     xhr.send(JSON.stringify({ lat: position.coords.latitude, lon: position.coords.longitude }));
     }
